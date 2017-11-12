@@ -8,11 +8,15 @@ public class LevelControl : MonoBehaviour {
 
     [SerializeField] private Image image;
     [SerializeField] private Animator anim;
+
+    AudioSource audioSource;
+    [SerializeField] AudioClip audio;
     
     [SerializeField] Text loadText;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         loadText.enabled = false;
     }
 
@@ -25,6 +29,7 @@ public class LevelControl : MonoBehaviour {
         if (other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(Fading());
+            audioSource.PlayOneShot(audio, 1f);
         }
     }
 
